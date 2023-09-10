@@ -1,2 +1,0 @@
-insert into Task(id, name, description, done, status, priority) values (1, 'Challenge Backend', 'Create the challenge backend the best as i can.', false, 'inprogress', 3);
-insert into Task(id, name, description, done, status, priority) values (2, 'Challenge Frontend', 'Create the challenge front the best as i can.', false, 'todo', 1);
