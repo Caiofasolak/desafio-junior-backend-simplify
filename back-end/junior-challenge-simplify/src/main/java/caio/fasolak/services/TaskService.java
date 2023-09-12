@@ -13,6 +13,8 @@ import jakarta.ws.rs.core.MediaType;
 import java.util.List;
 
 @ApplicationScoped
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public final class TaskService {
 
     @Inject
@@ -23,8 +25,9 @@ public final class TaskService {
     }
 
     @Transactional
-    public void newTask(Task task){
+    public Task newTask(Task task){
         taskRepository.persist(task);
+        return task;
     }
 
     @Transactional

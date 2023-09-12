@@ -1,7 +1,9 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ITask } from '../models/iTask';
+import { Task } from '../models/task';
+import { TasksService } from '../services/tasks.services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-to-do',
@@ -12,15 +14,18 @@ export class ToDoComponent implements OnInit {
 
 
   toDoForm!: FormGroup;
-  toDo: ITask [] = [];
-  inProgress: ITask [] = [];
-  done: ITask [] = [];
+  tasks: Task[] = [];
+  toDo: Task [] = [];
+  inProgress: Task [] = [];
+  done: Task [] = [];
   updateId: any = 0;
   isEditing: boolean = false;
 
-  constructor(private fb : FormBuilder) { }
-
+  constructor(private fb : FormBuilder, private _tasksService: TasksService) { 
+  }
+  
   ngOnInit(): void {
+    this._tasksService.list().subscribe(tasks => this.tasks = tasks);
     this.toDoForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', ],
@@ -28,10 +33,12 @@ export class ToDoComponent implements OnInit {
       status: ['', ],
       done: ['', ]
     })
+
+    // Logic of listall
+
   }
 
   createTask(){
-    debugger;
     if(this.toDoForm.value.description == "" || this.toDoForm.value.description == null){
       this.toDoForm.controls['description'].setValue('No Description.')
     }
@@ -47,9 +54,10 @@ export class ToDoComponent implements OnInit {
     })
     this.toDoForm.reset();
     this.toDoForm.clearValidators();
+    this._tasksService.create(this.toDo[this.toDo.length - 1])
   }
 
-  editTask(item: ITask, i: number){
+  editTask(item: Task, i: number){
     this.toDoForm.controls['name'].setValue(item.name);
     this.toDoForm.controls['description'].setValue(item.description);
     this.toDoForm.controls['priority'].setValue(item.priority);
@@ -87,7 +95,7 @@ export class ToDoComponent implements OnInit {
   }
 
 
-  drop(event: CdkDragDrop<ITask[]>) {
+  drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

@@ -22,8 +22,9 @@ public class TaskController {
     }
 
     @POST
-    public void newTask(Task task){
-        taskService.newTask(task);
+    public Task newTask(Task task){
+         taskService.newTask(task);
+         return task;
     }
 
     @DELETE

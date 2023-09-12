@@ -1,5 +1,6 @@
 .task-card {
- max-width: 20vw;
+ max-width: 25vw;
+ border-style: groove;
 }
 
 :host mat-form-field{
@@ -17,6 +18,7 @@
  margin: 0 25px 25px 0;
  display: inline-block;
  vertical-align: top;
+ text-align: center;
 }
 
 .example-list {

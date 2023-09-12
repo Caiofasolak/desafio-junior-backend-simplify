@@ -30,7 +30,7 @@
         </mat-card>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-9" style="background: #EEE">
       <div cdkDropListGroup>
         <div class="row">
           <div class="col-md-4">
@@ -38,13 +38,13 @@
               <h2>To do</h2>
           
               <div cdkDropList [cdkDropListData]="toDo" class="example-list" (cdkDropListDropped)="drop($event)">
-                <mat-card class="task-card mt-2" style="background: #dddddd;" *ngFor="let item of toDo; let i = index" cdkDrag>
+                <mat-card class="task-card mt-2" style="background: #dddddd; margin-top:0 !important" *ngFor="let item of toDo; let i = index" cdkDrag>
                   <mat-card-header>
                     <mat-card-title>{{item.name}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content>
-                    <h3>{{item.description}}</h3>
-                    <p>{{item.priority}}</p>
+                    <h3>Task Description: {{item.description}}</h3>
+                    <p>Task Priority: {{item.priority}}</p>
                   </mat-card-content>
                   <div class="buttons">
                     <mat-card-actions>
@@ -61,13 +61,13 @@
               <h2>In Progress</h2>
           
               <div cdkDropList [cdkDropListData]="inProgress" class="example-list" (cdkDropListDropped)="drop($event)">
-                <mat-card class="task-card mt-2" style="background: #dddddd;" *ngFor="let item of inProgress; let i = index" cdkDrag>
+                <mat-card class="task-card mt-2" style="background: #dddddd; margin-top:0 !important" *ngFor="let item of inProgress; let i = index" cdkDrag>
                   <mat-card-header>
                     <mat-card-title>{{item.name}}</mat-card-title>
                   </mat-card-header>
                   <mat-card-content>
-                    <h3>{{item.description}}</h3>
-                    <p>{{item.priority}}</p>
+                    <h3>Task Description: {{item.description}}</h3>
+                    <p>Task Priority: {{item.priority}}</p>
                   </mat-card-content>
                   <div class="buttons">
                     <mat-card-actions>
@@ -83,13 +83,14 @@
               <h2>Done</h2>
           
               <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
-                <mat-card class="task-card mt-2" style="background: #dddddd;" *ngFor="let item of done; let i = index" cdkDrag [cdkDragDisabled]="item.done">
+                <mat-card class="task-card mt-2" style="background: #dddddd; margin-top:0 !important" *ngFor="let item of done; let i = index" cdkDrag [cdkDragDisabled]="item.done">
                   <mat-card-header>
-                    <mat-card-title>{{item.name}}</mat-card-title>
+                    <mat-card-title>{{item.name}}<button mat-icon-button color="primary" style="pointer-events: none"><mat-icon>check_circle</mat-icon></button></mat-card-title>
                   </mat-card-header>
                   <mat-card-content>
-                    <h3>{{item.description}}</h3>
-                    <p>{{item.priority}}</p>
+                    <h3>Task Description: {{item.description}}</h3>
+                    <p>Task Priority: {{item.priority}}</p>
+                    
                   </mat-card-content>
                 </mat-card>
               </div>
