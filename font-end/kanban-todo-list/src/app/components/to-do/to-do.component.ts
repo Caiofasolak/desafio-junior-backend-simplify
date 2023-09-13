@@ -1,8 +1,8 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Task } from '../models/task';
-import { TasksService } from '../services/tasks.services';
+import { Task } from '../../models/task';
+import { TasksService } from '../../services/tasks.services';
 import { Observable } from 'rxjs';
 
 @Component({

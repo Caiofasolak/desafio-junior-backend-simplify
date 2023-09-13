@@ -9,7 +9,7 @@ import { first, tap } from 'rxjs';
 })
 export class TasksService {
 
-  private readonly API = 'http://localhost:8080/api/tasks';
+  private readonly API = '/api/tasks';
 
   constructor(private httpClient: HttpClient) { }
 
